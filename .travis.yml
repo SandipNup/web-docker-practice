@@ -15,3 +15,13 @@ before_install:
 #which run the test and exit
 script:
   - docker run sandip2011/web-docker-practice npm run test -- --coverage
+
+deploy:
+  provider: elasticbean
+  region: "us-west-2"
+  app: "docker"
+  env: "Docker-env"
+  bucket_name: "elasticbeanstalk-us-west-2-20200202039333"
+  bucket_path: "docker"
+  on:
+    branch: master
