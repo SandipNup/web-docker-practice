@@ -1,0 +1,17 @@
+#sudo permission requered
+sudo: required
+
+#we asked to install docker 
+services:
+  -docker
+
+#then we built image 
+before_install:
+  - docker build -t sandip2011/web-docker-practice -f Dockerfile.dev .
+
+#run the test 
+# here npm run test does not quit the terminal it just hangs out the 
+#so we used npm run test -- --coverage 
+#which run the test and exit
+script:
+  - docker run sandip2011/web-docker-practice npm run test -- --coverage
